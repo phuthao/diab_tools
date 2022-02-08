@@ -1,0 +1,40 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+.text-editors {
+  .quill-editor {
+
+    .ql-toolbar.ql-snow,
+    .ql-container.ql-snow {
+      border: 1px solid #e4e6ef;
+    }
+
+    .ql-container.ql-snow {
+      min-height: 155px;
+    }
+  }
+}
+
+.form-group.is-invalid {
+  .text-editors {
+    .quill-editor.editor {
+
+      .ql-toolbar,
+      .ql-container {
+        border-color: #f64e60;
+      }
+    }
+  }
+}
+
+.form-group.is-valid {
+  .text-editors {
+    .quill-editor.editor {
+
+      .ql-toolbar,
+      .ql-container {
+        border-color: #1bc5bd;
+      }
+    }
+  }
+}

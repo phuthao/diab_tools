@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <CodeAnalysisRuleSet>$(SolutionDir)\StyleCop.ruleset</CodeAnalysisRuleSet>
+    <RestoreSources>$(RestoreSources);..\..\Libs;https://api.nuget.org/v3/index.json</RestoreSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CpTech.Core" Version="1.8.39" />
+    <PackageReference Include="ExcelDataReader" Version="3.6.0" />
+    <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
+    <PackageReference Include="FirebaseAdmin" Version="2.0.0" />
+    <PackageReference Include="IdentityServer4" Version="4.0.4" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+      <Content Include="Configs\**" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

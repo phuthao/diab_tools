@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <CodeAnalysisRuleSet>$(SolutionDir)\StyleCop.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DiaB.Common\DiaB.Common.csproj" />
+    <ProjectReference Include="..\DiaB.Data\DiaB.Data.csproj" />
+  </ItemGroup>
+
+</Project>

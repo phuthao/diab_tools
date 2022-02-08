@@ -1,0 +1,13 @@
+packages/
+obj/
+bin/
+.nuget/
+.vs/
+*.log
+Logs/
+*.DotSettings.user
+*.csproj.user
+/DiaB.IdentityServer/Properties/PublishProfiles/FolderProfile.pubxml
+/DiaB.IdentityServer/Properties/PublishProfiles/FolderProfile.pubxml.user
+
+.idea/

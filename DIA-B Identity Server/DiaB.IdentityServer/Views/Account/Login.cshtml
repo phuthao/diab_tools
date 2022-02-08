@@ -1,0 +1,57 @@
+﻿@model DiaB.IdentityServer.Quickstart.Account.LoginViewModel
+
+@if(Model.EnableLocalLogin)
+{
+<div class="container-fluid login-page-container">
+    <div class="row h-100">
+        <img alt="Doctors Image" src="~/left-img.png" class=" doctors--image col-lg-3 " />
+        @*Start component here*@
+        <div class="col-sm-12 col-md-12 col-lg-9 mx-auto">
+    <div class="login-page-container__login-form">
+        <img src="~/logo.png" class="logo-form mb-6 mx-auto" />
+        <form class="form-horizontal" asp-route="Login">
+
+            <input type="hidden" asp-for="ReturnUrl" />
+            <div class="form-group">
+                <label class="col-sm-12 control-label text-left" asp-for="Username"
+                       style="display: flex; align-items: center; justify-content: left;">
+                    <span>Tên Đăng Nhập:</span>
+                </label>
+                <div class="col-sm-12">
+                    <input class="form-control " id="username" asp-for="Username" autofocus>
+                    @*<span class="glyphicon glyphicon-remove form-control-feedback"></span>*@
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="password" class="form-control " id="pwd" asp-for="Password" autocomplete="off">
+                    @*<span class="glyphicon glyphicon-remove form-control-feedback"></span>*@
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="checkbox" id="remember-password" name="remember-password" value="true"> <label for="remember-password">Nhớ mật khẩu</label>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                @if (ViewContext.ModelState.IsValid == false)
+                {
+                    <p class="text-danger">Tên đăng nhập hoặc mật khẩu không chính xác.</p>
+                }
+                <button class="btn btn-primary" name="button" value="login">
+                    <img alt="Login Image" src="~/log-in.png" class="login--icon" />Đăng nhập
+                </button>
+            </div>
+            <p class="control-label">   <a class="btn btn-link text-center mx-auto" href="forgetpassword">Quên mật khẩu?</a></p>
+            <p class="control-label">   <a class="btn btn-link text-center mx-auto" href="#">Liên hệ chúng tôi nếu bạn đang gặp vấn đề!</a></p>
+        </form>
+        </div>
+        <p class="position-absolute copy-right">Tổng đài hỗ trợ: @ViewBag.HotLine. © Copyright 2020 - Toàn bộ bản quyền thuộc về DiaB</p>
+    </div>
+        @*end component here*@
+    </div>
+ <img alt="Background Image" src="~/background.png"
+      class="login-page-container__images background--image" />
+
+</div>
+}

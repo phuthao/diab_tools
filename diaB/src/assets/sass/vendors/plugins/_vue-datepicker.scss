@@ -1,0 +1,116 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+.mx-datepicker {
+  width: 100%;
+}
+
+.mx-input-wrapper input {
+  border: 1px solid #e4e6ef;
+  height: 38px;
+}
+
+.mx-input {
+  font-size: 13px;
+}
+
+.is-invalid .mx-input-wrapper input {
+  border-color: #f64e60;
+}
+
+.is-valid .mx-input-wrapper input {
+  border-color: #01645A;
+}
+
+.mx-datepicker-main.mx-datepicker-popup {
+  .mx-datepicker-content {
+    .mx-datepicker-body {
+      .mx-calendar.mx-calendar-panel-date {
+        .mx-calendar-content {
+          .mx-table.mx-table-date {
+
+            td,
+            th {
+              height: 32px;
+              font-size: 12px;
+              border-radius: 20%;
+            }
+
+            .cell.today {
+              color: $white;
+              background-color: $green-200;
+            }
+
+            .cell:hover,
+            .cell.active {
+              color: $white;
+              background-color: $success;
+            }
+          }
+        }
+      }
+
+      .mx-calendar.mx-calendar-panel-month {
+        .mx-calendar-content {
+
+          .cell:hover,
+          .cell.active {
+            color: $white;
+            background-color: $success;
+          }
+        }
+      }
+
+      .mx-table.mx-table-year {
+
+        .cell:hover,
+        .cell.active {
+          color: $white;
+          background-color: $success;
+        }
+      }
+
+      .mx-time-content {
+        .mx-time-columns {
+          .mx-scrollbar.mx-time-column {
+
+            .mx-time-item:hover,
+            .mx-time-item.active {
+              color: $success;
+              background-color: transparent;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// is-valid / is-invalid state handling
+// @see node_modules/bootstrap/scss/_forms.scss:262
+@each $state,
+$data in $form-validation-states {
+  $color: map-get($data, color);
+  $icon: map-get($data, icon);
+
+  .form-group.is-#{$state} .mx-datepicker {
+
+    .mx-input-wrapper {
+
+      .mx-input {
+        border-color: $color;
+
+        @if $enable-validation-icons {
+          padding-right: $custom-select-feedback-icon-padding-right;
+          background: escape-svg($icon) $custom-select-bg no-repeat $custom-select-feedback-icon-position / $custom-select-feedback-icon-size;
+        }
+
+        &:focus {
+          border-color: $color;
+          box-shadow: 0 0 0 $input-focus-width rgba($color, 0.25);
+        }
+      }
+    }
+  }
+}

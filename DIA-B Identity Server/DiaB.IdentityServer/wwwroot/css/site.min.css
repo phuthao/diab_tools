@@ -1,0 +1,126 @@
+﻿* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+body,
+html {
+ width: 100%;
+ height: 100%;
+ font-family: 'Inter', sans-serif;
+}
+
+body {
+ background-color: #FFFFFF;
+}
+
+.login-page-container {
+ width: 100%;
+ height: 100%;
+ background-color: red !important;
+}
+
+
+.login-page-container__images {
+ position: absolute;
+}
+
+.slogans--image,
+.background--image,
+.doctors--image {
+ display: none;
+}
+
+.login-page-container__login-form {
+ padding: 25px;
+ margin-top: 35%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+}
+
+ .login-page-container__login-form > img {
+  margin-bottom: 22px;
+ }
+
+ .login-page-container__login-form > form {
+  width: 330px;
+ }
+
+Override style bootstrap: start
+
+.control-label {
+ font-style: normal;
+ font-weight: 500;
+ font-size: 16px;
+ line-height: 19px;
+ color: #515356;
+}
+
+.form-control {
+ background: #FCFCFC;
+ border: 1px solid #E4E6EF;
+ box-sizing: border-box;
+ border-radius: 50px;
+ transform: matrix(1, 0, 0, 1, 0, 0);
+ margin-top: 9px;
+}
+
+.btn:active:focus {
+ outline: none;
+}
+
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:active {
+ background: linear-gradient(180deg, #407BFF 0%, #6790EB 100%) !important;
+ border-radius: 45px;
+ font-size: 14px;
+ color: #FFFFFF;
+ outline: none;
+ border: none;
+}
+
+ .btn-primary:hover {
+  background: linear-gradient(180deg, #407BFF 0%, #4e85fa 100%) !important;
+ }
+
+@media all and (min-width: 1170px) {
+
+ .login-page-container__login-form {
+  margin-top: 15%;
+ }
+
+ .slogans--image,
+ .background--image,
+ .doctors--image {
+  display: block;
+ }
+
+ .background--image {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+ }
+
+ .doctors--image {
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+ }
+
+ .slogans--image {
+  left: 2%;
+  top: 20%;
+  z-index: 1;
+ }
+
+
+ .background--image {
+  width: 100%;
+  height: auto;
+ }
+}

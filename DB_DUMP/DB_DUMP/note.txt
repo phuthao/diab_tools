@@ -1,0 +1,15 @@
+mysql -u root -p123456 diab_stg < data_nations.sql
+mysql -u root -p123456 diab_stg < data_provinces.sql
+mysql -u root -p123456 diab_stg < data_districts.sql
+mysql -u root -p123456 diab_stg < data_wards.sql
+mysql -u root -p123456 diab_stg < data_images.sql
+mysql -u root -p123456 diab_stg < data_devices.sql
+mysql -u root -p123456 diab_stg < data_common_configures.sql
+mysql -u root -p123456 diab_stg < data_accounts.sql
+mysql -u root -p123456 diab_stg < data_roles.sql
+mysql -u root -p123456 diab_stg < data_account_roles.sql
+mysql -u root -p123456 diab_stg < data_user_forgot_password_tokens.sql
+
+
+===============
+mysqldump -u root -p123456 diab_stg  > ALL__diab_stg.sql

@@ -1,0 +1,47 @@
+// remove default outline border
+svg {
+  outline-width: 0;
+  outline-color: transparent;
+}
+// Custom data-table Vuetify
+.v-data-table {
+  thead.v-data-table-header {
+    background: #f3f6f9 !important;
+  }
+    th,
+    td {
+        font-weight: 400;
+        font-size: 1rem !important;
+        vertical-align: middle;
+        outline: none !important;
+        padding: 1rem 1rem;
+    }
+  .v-row-group__header {
+      background: none !important;
+    }
+
+  tr:hover {
+    background-color: #fff8eb !important;
+  }
+  tfoot,
+  thead {
+      th {
+          font-weight: 600;
+          color: #888C9F;
+      }
+  }
+}
+.v-tabs {
+  flex: 0 1 auto !important;
+}
+
+.v-image.v-responsive.theme--light {
+  box-shadow:
+  0 0px 1.5px rgba(0, 0, 0, 0.073),
+  0 0px 5.1px rgba(0, 0, 0, 0.107),
+  0 0px 23px rgba(0, 0, 0, 0.18)
+;
+
+  border: 3px solid #fff;
+  border-radius: 4px;
+}

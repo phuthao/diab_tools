@@ -1,0 +1,6 @@
+﻿@using DiaB.IdentityServer.Services
+@inject IDiabSettingService _settingService
+@{
+    Layout = "_Layout";
+    ViewBag.HotLine = _settingService.GetHotLine();
+}

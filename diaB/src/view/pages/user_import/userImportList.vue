@@ -1,6 +1,4 @@
-
 <template>
-
   <div class="user-import-list-page w-100">
     <basic-subheader>
       <template v-slot:actions>
@@ -75,40 +73,18 @@
           </div>
         </b-dropdown>
 
-
-  <b-button  class="btn btn-success ml-2"
-          type="button" id="show-btn" @click="$bvModal.show('bv-modal-example')">Import</b-button>
-         
-
-  <b-modal id="bv-modal-example" hide-footer>
-    <label for="name-input" class="d-block" id="__BVID__797__BV_label_">Import file</label>
-    <label id="file-name" type="text" required="required" aria-required="true" class="form-control" @change="onFileChange" ></label>
-
-    <!-- <label id="file-name"> -->
- <template #modal-title>
-     Thêm File
-    </template>    
-     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" block @click="$bvModal.hide('bv-modal-example')" >Hủy</button>
-        <!-- <b-button type="button" class="btn btn btn-success ml-2 btn-secondary" >Import <inline-svg src="/media/svg/icons/Neolex/Basic/upload-cloud.svg" /></b-button> -->
-       <button class="btn btn btn-success ml-2 btn-secondary" onclick="document.getElementById('getFile').click()">Import</button>
-       <input type='file' id="getFile" style="display:none" >
-       
-   
-
-  
-
-      </div>
-  </b-modal>
-
-  <!-- <input id="file-upload" name='upload_cont_img' type="file" style="display:none;"> -->
-
-  
-
-
+        <b-button
+          class="btn btn-success ml-2"
+          type="button"
+          id="show-btn"
+          @click="handleImportUser()"
+        >
+          <span class="svg-icon">
+            <inline-svg src="/media/svg/icons/Neolex/Basic/upload-cloud.svg" />
+          </span>
+          Import danh sách
+        </b-button>
       </template>
-      
-     
     </basic-subheader>
     <b-container fluid class="user-import-list-page__body mb-6 mt-6">
       <b-row>
@@ -126,61 +102,18 @@
               >
                 <template v-slot:body="{ item }">
                   <td>
-                    {{ item.name }}
+                    {{ item.user_name }}
                   </td>
-                  <td style="width: 20px">
-                    <action-dropdown
-                      :value="item"
-                      @view="viewItem"
-                      @edit="editItem"
-                      @delete="deleteItem"
-                      @copy="copyItem"
-                    >
-                    </action-dropdown>
-                  </td>
-                  <td>{{ item.note }}</td>
                   <td>
-                    <div>
-                      <avatar
-                        v-for="member in item.members"
-                        :key="member.id"
-                        styleClass="mr-2"
-                        :size="'40px'"
-                        :text="member.fullName"
-                        :src="member.picture"
-                        :rounded="true"
-                      ></avatar>
-                    </div>
+                    {{ item.user_code }}
                   </td>
-                  <td>{{ $moment(item.lastUpdated).format('DD/MM/YYYY') }}</td>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <avatar
-                        size="40px"
-                        :text="item.updatedPerson.fullName"
-                        :src="item.updatedPerson.picture"
-                        :rounded="true"
-                      ></avatar>
-                      <div class="d-flex flex-column ml-5">
-                        <p
-                          class="mb-0"
-                          style="
-                            font-weight: 600;
-                            font-size: 13px;
-                            color: #515356;
-                          "
-                        >
-                          {{ item.updatedPerson.fullName }}
-                        </p>
-                        <p
-                          class="mt-2 mb-0"
-                          style="font-size: 12px; color: #888c9f"
-                        >
-                          {{ item.updatedPerson.username }}
-                        </p>
-                      </div>
-                    </div>
-                  </td>
+                  <td>{{ item.survey_type }}</td>
+                  <td>{{ item.survey_name }}</td>
+                  <td>{{ item.survey_code }}</td>
+                  <td>{{ item.user_age }}</td>
+                  <td>{{ item.user_gender }}</td>
+                  <td>{{ $moment(item.survey_day).format('DD/MM/YYYY') }}</td>
+                  <td>{{ item.user_province }}</td>
                 </template>
               </template-table>
             </div>
@@ -188,11 +121,9 @@
         </b-col>
       </b-row>
     </b-container>
+    <user-import-modal :popupType="'popupType'" @loadData="loadData" />
   </div>
 </template>
-
-
-
 
 <style lang="scss" scoped>
 .dropdown-form-filter {
@@ -202,15 +133,11 @@
     }
   }
 }
-
-
-
-
 </style>
 
 <script>
 export default {
-  
+  components: { 'user-import-modal': () => import('./components/Modal') },
   data() {
     return {
       paging: {
@@ -227,38 +154,48 @@ export default {
       },
       column: [
         {
-          key: 'name',
+          key: 'user_name',
           label: 'Bệnh nhân',
           sortable: false,
         },
         {
-          key: 'actionDropdown',
-          label: '',
+          key: 'user_code',
+          label: 'Mã số',
           sortable: false,
         },
         {
-          key: 'functionType',
-          label: 'Loại bệnh',
-          sortable: false,
-        },
-        {
-          key: 'members',
-          label: 'Ngày cập nhập',
-          sortable: false,
-        },
-        {
-          key: 'lastUpdated',
-          label: 'Gói tham gia',
-          sortable: false,
-        },
-        {
-          key: 'updatedPerson',
+          key: 'survey_type',
           label: 'Loại khảo sát',
           sortable: false,
         },
-         {
-          key: 'updatedPerson2',
+        {
+          key: 'survey_name',
           label: 'Tên khảo sát',
+          sortable: false,
+        },
+        {
+          key: 'survey_code',
+          label: 'Mã khảo sát',
+          sortable: false,
+        },
+        {
+          key: 'user_age',
+          label: 'Năm sinh',
+          sortable: false,
+        },
+        {
+          key: 'user_gender',
+          label: 'Giới Tính',
+          sortable: false,
+        },
+        {
+          key: 'survey_day',
+          label: 'Ngày thực hiện khảo sát',
+          sortable: false,
+        },
+        {
+          key: 'user_province',
+          label: 'Tỉnh thành',
           sortable: false,
         },
       ],
@@ -276,16 +213,16 @@ export default {
   },
   watch: {
     'paging.page'() {
-      this.loadData();
+      //this.loadData();
     },
     'paging.pageSize'() {
-      this.loadData();
+      //this.loadData();
     },
     sort: {},
   },
   methods: {
     pagingAction() {
-      this.loadData();
+      //this.loadData();
     },
     createItem() {
       this.$router.push({
@@ -304,51 +241,31 @@ export default {
         },
       });
     },
-    // viewItem(item) {
-    // },
-    // editItem(item) {
-    // },
-    // copyItem(item) {
-    // },
-    // deleteItem(item) {
-    // },
     searchRequest() {
-      this.loadData();
+      //this.loadData();
     },
     resetRequest() {
       this.filter.searchKey = null;
       this.$nextTick(() => {
         this.$validator.reset();
       });
-      this.loadData();
+      //this.loadData();
     },
     sortRequest() {
       return;
     },
-    loadData() {
-      this.$store.commit('context/setLoading', true);
-      this.$api
-        .get('user_groups', {
-          params: this.searchParams,
-        })
-        .then(({ meta, data }) => {
-          this.data = data || [];
-          this.paging.total = meta.total;
-        })
-        .finally(() => {
-          this.$store.commit('context/setLoading', false);
-        });
+    loadData(payload) {
+      this.data = payload || [];
       return;
+    },
+    async handleImportUser() {
+      this.$nextTick(() => {
+        this.$bvModal.show('user-import-modal');
+      });
     },
   },
   mounted() {
     // this.loadData();
-    
   },
- 
 };
-
-
 </script>
-
-
